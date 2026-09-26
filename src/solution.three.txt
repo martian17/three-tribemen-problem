@@ -1,0 +1,8 @@
+First question: If I asked "is the second tribeman random?", would you answer yes?
+if true, ask the third tribeman, if false, ask the second the next question
+Second question: If I asked "does the left road lead to heaven?", would you answer yes?
+
+
+最初の質問: 「もし私があなたに『二番目の部族人は質問にランダムに答えますか？』と聞いたら、あなたは『はい』と答えますか？」
+もし答えが『はい』であるのなら三人目の部族人に、『いいえ』であるなら二人目の部族人に次の質問を行う
+二番目の質問: 「もし私があなたに『左の道は天国に続きますか？』と聞いたら、あなたは『はい』と答えますか？」
