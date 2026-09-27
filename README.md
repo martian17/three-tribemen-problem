@@ -1,4 +1,4 @@
-# Three Tribemen Problem
+# Three Tribesmen Problem
 Original Inspiration: [https://www.youtube.com/watch?v=3sutYh31UD8](https://www.youtube.com/watch?v=3sutYh31UD8)  
   
 I felt a sudden surge of inspiration as I was watching this video, and around 1:38, I've decided to pause the video and try my luck at cracking the solution.  

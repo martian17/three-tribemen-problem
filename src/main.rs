@@ -1,16 +1,16 @@
 #[derive(PartialEq, Copy, Clone)]
-enum Tribeman {
+enum Tribesman {
     Random,
     Truth,
     False,
 }
 
-impl std::fmt::Display for Tribeman {
+impl std::fmt::Display for Tribesman {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Tribeman::Random => write!(f, "Random"),
-            Tribeman::Truth => write!(f, "Truth"),
-            Tribeman::False => write!(f, "False"),
+            Tribesman::Random => write!(f, "Random"),
+            Tribesman::Truth => write!(f, "Truth"),
+            Tribesman::False => write!(f, "False"),
         }
     }
 }
@@ -30,19 +30,19 @@ impl std::fmt::Display for Direction {
     }
 }
 
-impl Tribeman {
+impl Tribesman {
     fn eval(&self, val: bool) -> bool {
         match self {
-            Tribeman::Random => rand::random_bool(0.5),
-            Tribeman::Truth => val,
-            Tribeman::False => !val,
+            Tribesman::Random => rand::random_bool(0.5),
+            Tribesman::Truth => val,
+            Tribesman::False => !val,
         }
     }
     fn ask_equal<T: PartialEq>(&self, v1: T, v2: T) -> bool {
         match self {
-            Tribeman::Random => rand::random_bool(0.5),
-            Tribeman::Truth => v1 == v2,
-            Tribeman::False => v1 != v2,
+            Tribesman::Random => rand::random_bool(0.5),
+            Tribesman::Truth => v1 == v2,
+            Tribesman::False => v1 != v2,
         }
     }
 }
@@ -51,10 +51,10 @@ impl Tribeman {
 
 fn classic_problem() {
     // initialization
-    let (tribeman_1, tribeman_2) = if rand::random_bool(0.5) {
-        (Tribeman::Truth, Tribeman::False)
+    let (tribesman_1, tribesman_2) = if rand::random_bool(0.5) {
+        (Tribesman::Truth, Tribesman::False)
     } else {
-        (Tribeman::False, Tribeman::Truth)
+        (Tribesman::False, Tribesman::Truth)
     };
 
     let direction_heaven = if rand::random_bool(0.5) {
@@ -66,7 +66,7 @@ fn classic_problem() {
 
 
     // the solution
-    let success = if tribeman_1.eval(tribeman_1.ask_equal(Direction::Left, direction_heaven)) {
+    let success = if tribesman_1.eval(tribesman_1.ask_equal(Direction::Left, direction_heaven)) {
         println!("Left leads to heaven");
         direction_heaven == Direction::Left
     } else {
@@ -79,23 +79,23 @@ fn classic_problem() {
     } else {
         print!("Failure! ");
     }
-    println!("tribeman_1: {}, direction_heaven: {}", tribeman_1, direction_heaven);
+    println!("tribesman_1: {}, direction_heaven: {}", tribesman_1, direction_heaven);
 }
 
-fn three_tribemen_problem() {
+fn three_tribesmen_problem() {
     // initialization
-    let (tribeman_1, tribeman_2, tribeman_3) = if rand::random_bool(1.0/6.0) {
-        (Tribeman::Truth, Tribeman::False, Tribeman::Random)
+    let (tribesman_1, tribesman_2, tribesman_3) = if rand::random_bool(1.0/6.0) {
+        (Tribesman::Truth, Tribesman::False, Tribesman::Random)
     } else if rand::random_bool(1.0/5.0) {
-        (Tribeman::Truth, Tribeman::Random, Tribeman::False)
+        (Tribesman::Truth, Tribesman::Random, Tribesman::False)
     } else if rand::random_bool(1.0/4.0) {
-        (Tribeman::False, Tribeman::Truth, Tribeman::Random)
+        (Tribesman::False, Tribesman::Truth, Tribesman::Random)
     } else if rand::random_bool(1.0/3.0) {
-        (Tribeman::False, Tribeman::Random, Tribeman::Truth)
+        (Tribesman::False, Tribesman::Random, Tribesman::Truth)
     } else if rand::random_bool(1.0/2.0) {
-        (Tribeman::Random, Tribeman::Truth, Tribeman::False)
+        (Tribesman::Random, Tribesman::Truth, Tribesman::False)
     } else {
-        (Tribeman::Random, Tribeman::False, Tribeman::Truth)
+        (Tribesman::Random, Tribesman::False, Tribesman::Truth)
     };
 
     let direction_heaven = if rand::random_bool(0.5) {
@@ -112,14 +112,14 @@ fn three_tribemen_problem() {
     //
     // idea 2: ask the first one to choose the second one, then ask the second one the real question
 
-    let first_response = tribeman_1.eval(tribeman_1.ask_equal(tribeman_2, Tribeman::Random));
+    let first_response = tribesman_1.eval(tribesman_1.ask_equal(tribesman_2, Tribesman::Random));
 
     let q2_subject = if first_response {
-        // tribeman_2 is random.
-        tribeman_3
+        // tribesman_2 is random.
+        tribesman_3
     } else {
-        // tribeman_3 is random.
-        tribeman_2
+        // tribesman_3 is random.
+        tribesman_2
     };
 
     let second_response = q2_subject.eval(q2_subject.ask_equal(Direction::Left, direction_heaven));
@@ -137,7 +137,7 @@ fn three_tribemen_problem() {
     } else {
         print!("Failure! ");
     }
-    println!("tribeman_1: {}, tribeman_2: {}, tribeman_3: {}, q2_subject: {}, direction_heaven: {}", tribeman_1, tribeman_2, tribeman_3, q2_subject, direction_heaven);
+    println!("tribesman_1: {}, tribesman_2: {}, tribesman_3: {}, q2_subject: {}, direction_heaven: {}", tribesman_1, tribesman_2, tribesman_3, q2_subject, direction_heaven);
 }
 
 
@@ -149,6 +149,6 @@ fn main() {
 
     for i in 0..10 {
         println!("\nRound {}", i);
-        three_tribemen_problem();
+        three_tribesmen_problem();
     }
 }

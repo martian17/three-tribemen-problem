@@ -1,5 +1,5 @@
-First question: If I asked "is the second tribeman random?", would you answer yes?
-if true, ask the third tribeman, if false, ask the second the next question
+First question: If I asked "is the second tribesman random?", would you answer yes?
+If true, ask the third tribesman, if false, ask the second the next question.
 Second question: If I asked "does the left road lead to heaven?", would you answer yes?
 
 
